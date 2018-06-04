@@ -34,10 +34,8 @@ RUN set -x \
     && rustup component add --toolchain nightly rustfmt-preview \
     # install clippy (nightly only)
     && cargo +nightly install clippy \
-    # install cargo-tarpaulin on stable, beta, nightly
+    # install cargo-tarpaulin via stable
     && cargo install cargo-tarpaulin \
-    && cargo +beta install cargo-tarpaulin \
-    && cargo +nightly install cargo-tarpaulin \
     # clean-up
     && apt-get clean \
     && rm ${CARGO_HOME}/bin/rustup \
