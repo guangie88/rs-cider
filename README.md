@@ -15,24 +15,22 @@ CI/CD purposes for Rust environment.
 ## Included stuff
 
 - `rustfmt-preview` (`cargo fmt`) on all stable, beta, nightly
-  - Link: <https://github.com/rust-lang-nursery/rustfmt>
+  <https://github.com/rust-lang-nursery/rustfmt>
   - Installed via `rustup component add rustfmt-preview`
-  - Stable command:
+  - Usage:
     - `cargo fmt`
-  - Beta command:
     - `cargo +beta fmt`
-  - Nightly command:
     - `cargo +nightly fmt`
 - `cargo clippy` only on nightly
-  - Link: <https://github.com/rust-lang-nursery/rust-clippy>
+  <https://github.com/rust-lang-nursery/rust-clippy>
   - Installed via `cargo +nightly install clippy`
-  - Command:
-    - `cargo clippy`
-- `cargo tarpaulin` via stable
-  - Link: <https://github.com/xd009642/tarpaulin>
+  - `cargo clippy`
+- `cargo tarpaulin` via stable <https://github.com/xd009642/tarpaulin>
   - Installed via `cargo install cargo-tarpaulin`
-  - Command:
-    - `cargo tarpaulin`
+  - `cargo tarpaulin`
+- `diesel` via stable <https://github.com/diesel-rs/diesel>
+  - Installed via `cargo install diesel`
+  - `diesel`
 
 ## Fun fact
 
