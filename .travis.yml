@@ -1,0 +1,52 @@
+language: bash
+
+services:
+- docker
+
+env:
+  global:
+  - PROJECT_NAME=rs-cider
+  - IMAGE_NAME=$DOCKER_USERNAME/$PROJECT_NAME
+  
+before_script:
+- set -e
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+  fi
+
+script:
+- docker build -t $IMAGE_NAME .
+
+after_success:
+- export STABLE_RUST_VER=$(docker run --rm -it $IMAGE_NAME rustc --version |
+    grep -oE "[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]")
+- echo stable = $STABLE_RUST_VER
+- export BETA_RUST_VER=$(docker run --rm -it $IMAGE_NAME rustc +beta --version |
+    grep -oE "[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]")
+- echo beta = $BETA_RUST_VER
+- export NIGHTLY_RUST_VER=$(docker run --rm -it $IMAGE_NAME rustc +nightly --version |
+    grep -oE "[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]")
+- echo nightly = $NIGHTLY_RUST_VER
+- export NIGHTLY_RUST_DATE=$(docker run --rm -it $IMAGE_NAME rustc +nightly --version |
+    grep -oE "[[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2}")
+- echo nightly-date = $NIGHTLY_RUST_DATE
+- export STABLE_TAG=$STABLE_RUST_VER
+- docker tag $IMAGE_NAME $IMAGE_NAME:$STABLE_TAG;
+- export BETA_TAG=$BETA_RUST_VER-beta
+- docker tag $IMAGE_NAME $IMAGE_NAME:$BETA_TAG;
+- export NIGHTLY_TAG=$NIGHTLY_RUST_VER-nightly
+- docker tag $IMAGE_NAME $IMAGE_NAME:$NIGHTLY_TAG;
+- export NIGHTLY_DATE_TAG=nightly-$NIGHTLY_RUST_DATE
+- docker tag $IMAGE_NAME $IMAGE_NAME:$NIGHTLY_DATE_TAG;
+- |
+  if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+    docker push $IMAGE_NAME:$STABLE_TAG;
+    docker push $IMAGE_NAME:$BETA_TAG;
+    docker push $IMAGE_NAME:$NIGHTLY_TAG;
+    docker push $IMAGE_NAME:$NIGHTLY_DATE_TAG;
+    docker push $IMAGE_NAME;
+  fi
+
+branches:
+  only:
+  - master
