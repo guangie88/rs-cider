@@ -35,7 +35,8 @@ RUN set -x \
     # install clippy (nightly only)
     && cargo +nightly install clippy \
     # install cargo-tarpaulin via stable
-    && cargo +stable install cargo-tarpaulin \
+    # see: https://github.com/xd009642/tarpaulin/commit/651be48104c700b76b1ec61b9bb72df1b21cfd8c#diff-04c6e90faac2675aa89e2176d2eec7d8
+    && RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo +stable install cargo-tarpaulin \
     # install diesel_cli via stable
     && cargo +stable install diesel_cli \
     # clean-up
