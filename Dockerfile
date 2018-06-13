@@ -35,9 +35,9 @@ RUN set -x \
     # install clippy (nightly only)
     && cargo +nightly install clippy \
     # install cargo-tarpaulin via stable
-    && cargo install cargo-tarpaulin \
+    && cargo +stable install cargo-tarpaulin \
     # install diesel_cli via stable
-    && cargo install diesel_cli \
+    && cargo +stable install diesel_cli \
     # clean-up
     && apt-get clean \
     && rm ${CARGO_HOME}/bin/rustup \
