@@ -23,7 +23,7 @@ CI/CD purposes for Rust environment.
     - `cargo +nightly fmt`
 - `cargo clippy` only on nightly
   <https://github.com/rust-lang-nursery/rust-clippy>
-  - Installed via `cargo +nightly install clippy`
+  - Installed via `rustup component add clippy`
   - `cargo clippy`
 - `cargo tarpaulin` via stable <https://github.com/xd009642/tarpaulin>
   - Installed via `cargo install cargo-tarpaulin`

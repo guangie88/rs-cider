@@ -31,9 +31,7 @@ RUN set -x \
     && rustup component add --toolchain beta rustfmt-preview \
     # then nightly
     && rustup toolchain add nightly \
-    && rustup component add --toolchain nightly rustfmt-preview \
-    # install clippy (nightly only)
-    && cargo +nightly install clippy \
+    && rustup component add --toolchain nightly clippy-preview rustfmt-preview \
     # install cargo-tarpaulin via stable
     # see: https://github.com/xd009642/tarpaulin/commit/651be48104c700b76b1ec61b9bb72df1b21cfd8c#diff-04c6e90faac2675aa89e2176d2eec7d8
     && RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo +stable install cargo-tarpaulin \
