@@ -12,6 +12,10 @@ Docker Hub link: <https://hub.docker.com/r/guangie88/rs-cider>
 The purpose of the Docker image is to create a "Swiss Army knife" for automated
 CI/CD purposes for Rust environment.
 
+## Changelog
+
+See [CHANGELOG](CHANGELOG.md).
+
 ## Included stuff
 
 - `rustfmt-preview` (`cargo fmt`) on all stable, beta, nightly
@@ -21,10 +25,12 @@ CI/CD purposes for Rust environment.
     - `cargo fmt`
     - `cargo +beta fmt`
     - `cargo +nightly fmt`
-- `cargo clippy` only on nightly
+- `cargo clippy` only on all stable, beta, nightly
   <https://github.com/rust-lang-nursery/rust-clippy>
   - Installed via `rustup component add clippy`
   - `cargo clippy`
+  - `cargo +beta clippy`
+  - `cargo +nightly clippy`
 - `cargo tarpaulin` via stable <https://github.com/xd009642/tarpaulin>
   - Installed via `cargo install cargo-tarpaulin`
   - `cargo tarpaulin`
