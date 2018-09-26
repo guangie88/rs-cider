@@ -31,9 +31,9 @@ See [CHANGELOG](CHANGELOG.md).
   - `cargo clippy`
   - `cargo +beta clippy`
   - `cargo +nightly clippy`
-- `cargo tarpaulin` via stable <https://github.com/xd009642/tarpaulin>
-  - Installed via `cargo install cargo-tarpaulin`
-  - `cargo tarpaulin`
+- `cargo tarpaulin` via nightly only <https://github.com/xd009642/tarpaulin>
+  - Installed via `cargo +nightly install cargo-tarpaulin`
+  - `cargo +nightly tarpaulin`
 - `diesel` via stable <https://github.com/diesel-rs/diesel>
   - Installed via `cargo install diesel`
   - `diesel`
